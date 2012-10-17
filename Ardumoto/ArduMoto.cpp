@@ -1,4 +1,4 @@
-// ArduMoto.h - Arduino library to control DC motos using the ArduMoto Shield
+// ArduMoto.cpp - Arduino library to control DC motors using the ArduMoto Shield
 // Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // This library is free software; you can redistribute it and/or
@@ -35,19 +35,19 @@ ArduMoto::~ArduMoto()
 //do something here? (free(), delete()?)
 }
 
-/// Begin Function: begin with default values
+/// Begin Function: begin with default values (pin selection)
 void ArduMoto::begin()
 {
   beginMotoA(DIRECTION_PIN_A, PWM_PIN_A);
   beginMotoB(DIRECTION_PIN_B, PWM_PIN_B);
 }
 
-/// Begin Function for moto A
+/// Begin Function for moto A (pin selection)
 void ArduMoto::beginMotoA(int directionPin, int pwmPin)
 {
   pinMode(PWM_PIN_A, OUTPUT);                     //Set control pins to be outputs
   pinMode(DIRECTION_PIN_A, OUTPUT);
-  analogWrite(PWM_PIN_A, 100);                    //set moto to run at (100/255 = 39)% duty cycle (slow)
+  analogWrite(PWM_PIN_A, 0);                      //set moto A to run at (0/255 = 0)% duty cycle (stopped)
 }
 
 /// Begin Function for moto A
@@ -55,7 +55,7 @@ void ArduMoto::beginMotoB(int directionPin, int pwmPin)
 {
   pinMode(PWM_PIN_B, OUTPUT);
   pinMode(DIRECTION_PIN_B, OUTPUT);
-  analogWrite(PWM_PIN_B, 100);                    //set moto to run at (100/255 = 39)% duty cycle (slow)
+  analogWrite(PWM_PIN_B, 0);                      //set moto B to run at (0/255 = 0)% duty cycle (stopped)
 }
 
 /// setSpeed: from -100 to + 100
@@ -99,7 +99,7 @@ void ArduMoto::setSpeed(char moto, int speed)
   }
 }
 
-/// fadeSpeed
+/// fadeSpeed: set the speed to desiredSpeed, adjusting slowly, "fading towards" the desired value
 void ArduMoto::fadeSpeed(char moto, int desiredSpeed)
 {
   int tempspeed;
@@ -146,7 +146,7 @@ void ArduMoto::fadeSpeed(char moto, int desiredSpeed)
   }
 }
 
-/// stop
+/// stop the motor
 void ArduMoto::stop(char moto)
 {
   setSpeed(moto, 0);
@@ -160,23 +160,25 @@ void ArduMoto::stop(char moto)
     Serial.println("Stopping Motor B");
   }
 #endif
-
 }
 
-/// brake
+/// brake: brake the motor, using a temporary negative value (uses fadeSpeed)
 void ArduMoto::brake(char moto)
 {
   if(moto == 'A')
   {
 #ifdef DEBUG_MOTORS
     Serial.println("Braking Motor A");
+#endif
     setSpeed(moto, - _motoSpeedA/BRAKESPEED);
     fadeSpeed(moto,0);
-#endif
+
   }
   else if (moto == 'B')
   {
+#ifdef DEBUG_MOTORS
     Serial.println("Braking Motor B");
+#endif
     setSpeed(moto, - _motoSpeedB/BRAKESPEED);
     fadeSpeed(moto,0);
   }

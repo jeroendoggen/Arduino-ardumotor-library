@@ -1,3 +1,14 @@
+// FadSpeed.ino - Arduino sketch to show a fading example of a DC motor using the ArduMoto Shield
+// Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
+//
+// Program flow:
+//   - set motor speed at 30%
+//   - set motor speed at 60%
+//   - set motor speed at 90%
+//   - set motor speed at 60%
+//   - set motor speed at 30%
+//   - set motor speed at 0%
+
 #include <ArduMoto.h>
 
 ArduMoto Moto;
@@ -10,33 +21,21 @@ void setup()
 
 void loop()
 {
-  Moto.setSpeed('A',10);
+  Moto.setSpeed('A',30);
   delay (2000);
 
-  Moto.setSpeed('A',70);
+  Moto.setSpeed('A',60);
   delay (2000);
 
-  Moto.setSpeed('A',100);
+  Moto.setSpeed('A',90);
   delay (2000);
 
-  Moto.setSpeed('A',50);
+  Moto.setSpeed('A',60);
+  delay (2000);
+
+  Moto.setSpeed('A',30);
   delay (2000);
 
   Moto.setSpeed('A',0);
-  delay (2000);
-
-  Moto.setSpeed('B',-50);
-  delay (2000);
-
-  Moto.setSpeed('B',-80);
-  delay (2000);
-
-  Moto.setSpeed('B',-100);
-  delay (2000);
-
-  Moto.setSpeed('B',-50);
-  delay (2000);
-
-  Moto.setSpeed('B',0);
   delay (2000);
 }

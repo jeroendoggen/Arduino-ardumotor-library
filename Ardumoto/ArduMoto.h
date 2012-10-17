@@ -3,9 +3,10 @@
 //
 // Version History:
 //  Version 0.1: setSpeed, fadeSpeed, brake
+//  Version 0.2: tested using actual hardware, changed some parameters and example '.ino' files
 //
 // Roadmap:
-//  Version 0.2: ??
+//  Version 0.3: ??
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,21 +30,18 @@
 class ArduMoto
 {
   public:
-    ArduMoto();                                  // Constructor
-    ~ArduMoto();                                 // Destructor
+    ArduMoto();                                   // Constructor
+    ~ArduMoto();                                  // Destructor
 
     void begin();
-
-                                                  // Begin all sensors
     void beginMotoA(int directionPin, int pwmPin);
-                                                  // Begin all sensors
     void beginMotoB(int directionPin, int pwmPin);
 
-    void setSpeed(char moto, int speed);         // Set the speed of a selected moto, range: -100 to +100
-    void fadeSpeed(char moto, int speed);        // Fade the speed of a moto: range -100 to 100
+    void setSpeed(char moto, int speed);          // Set the speed of a selected motor, range: -100 to +100
+    void fadeSpeed(char moto, int speed);         // Fade the speed of a motor to a specific value: range -100 to 100
 
     void stop(char moto);
-    void brake(char moto);
+    void brake(char moto);                        // Brake the motor
 
   private:
     int _motoSpeedA;
