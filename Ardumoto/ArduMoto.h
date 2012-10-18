@@ -4,9 +4,10 @@
 // Version History:
 //  Version 0.1: setSpeed, fadeSpeed, brake
 //  Version 0.2: tested using actual hardware, changed some parameters and example '.ino' files
+//  Version 0.3: replaced fadeSpeed with new slowChange function
 //
 // Roadmap:
-//  Version 0.3: ??
+//  Version 0.4: ??
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,7 +39,7 @@ class ArduMoto
     void beginMotoB(int directionPin, int pwmPin);
 
     void setSpeed(char moto, int speed);          // Set the speed of a selected motor, range: -100 to +100
-    void fadeSpeed(char moto, int speed);         // Fade the speed of a motor to a specific value: range -100 to 100
+    void slowChange(char moto, int speed);        // Fade the speed of a motor slowly to a specific value: range -100 to 100
 
     void stop(char moto);
     void brake(char moto);                        // Brake the motor

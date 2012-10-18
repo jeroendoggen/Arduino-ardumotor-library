@@ -99,50 +99,54 @@ void ArduMoto::setSpeed(char moto, int speed)
   }
 }
 
-/// fadeSpeed: set the speed to desiredSpeed, adjusting slowly, "fading towards" the desired value
-void ArduMoto::fadeSpeed(char moto, int desiredSpeed)
+/// slowChange: set the speed to desiredSpeed, adjusting slowly towards the desired value
+void ArduMoto::slowChange(char moto, int desiredSpeed)
 {
-  int tempspeed;
   int difference;
 
   if(moto == 'A')
   {
-    difference = _motoSpeedA - desiredSpeed;
+    difference = desiredSpeed - _motoSpeedA;
 #ifdef DEBUG_MOTORS
     Serial.print("Difference: ");
     Serial.println(difference);
 #endif
-    tempspeed = _motoSpeedA;
-
-    while( tempspeed != desiredSpeed)
+    while( _motoSpeedA != desiredSpeed)
     {
-      tempspeed = tempspeed - (difference/FADESPEED);
-      setSpeed(moto, tempspeed);
-#ifdef DEBUG_MOTORS
-      Serial.print("Setting Motor A to ");
-      Serial.println(tempspeed);
-#endif
-      delay(10);
-    }
+     if( _motoSpeedA < desiredSpeed )
+     {
+      _motoSpeedA++;
+      setSpeed(moto, _motoSpeedA);
+     }
+    if( _motoSpeedA > desiredSpeed )
+     {
+      _motoSpeedA--;
+      setSpeed(moto, _motoSpeedA);
+     } 
+   delay(SLOWCHANGEDELAY);
+   } 
   }
   if(moto == 'B')
   {
-    tempspeed = _motoSpeedB;
-    difference = _motoSpeedB - desiredSpeed;
+    difference = desiredSpeed - _motoSpeedB;
 #ifdef DEBUG_MOTORS
     Serial.print("Difference: ");
     Serial.println(difference);
 #endif
-    while( tempspeed != desiredSpeed)
+    while( _motoSpeedB != desiredSpeed)
     {
-      tempspeed = tempspeed - (difference/FADESPEED);
-      setSpeed(moto, tempspeed);
-#ifdef DEBUG_MOTORS
-      Serial.print("Setting Motor B to ");
-      Serial.println(tempspeed);
-#endif
-      delay(10);
-    }
+     if( _motoSpeedB < desiredSpeed )
+     {
+      _motoSpeedB++;
+      setSpeed(moto, _motoSpeedB);
+     }
+    if( _motoSpeedB > desiredSpeed )
+     {
+      _motoSpeedB--;
+      setSpeed(moto, _motoSpeedB);
+     } 
+   delay(SLOWCHANGEDELAY);
+   } 
   }
 }
 
@@ -162,7 +166,7 @@ void ArduMoto::stop(char moto)
 #endif
 }
 
-/// brake: brake the motor, using a temporary negative value (uses fadeSpeed)
+/// brake: brake the motor, using a temporary negative value (uses slowChange)
 void ArduMoto::brake(char moto)
 {
   if(moto == 'A')
@@ -171,7 +175,7 @@ void ArduMoto::brake(char moto)
     Serial.println("Braking Motor A");
 #endif
     setSpeed(moto, - _motoSpeedA/BRAKESPEED);
-    fadeSpeed(moto,0);
+    slowChange(moto,0);
 
   }
   else if (moto == 'B')
@@ -180,6 +184,6 @@ void ArduMoto::brake(char moto)
     Serial.println("Braking Motor B");
 #endif
     setSpeed(moto, - _motoSpeedB/BRAKESPEED);
-    fadeSpeed(moto,0);
+    slowChange(moto,0);
   }
 }

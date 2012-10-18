@@ -1,9 +1,9 @@
-// FadSpeed.ino - Arduino sketch to show a fading example of a DC motor using the ArduMoto Shield
+// slowChange.ino - Arduino sketch to show a fading example of a DC motor using the ArduMoto Shield
 // Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // Program flow:
-//   - fade motor speed to +100% (motor should accelerate slowly)
-//   - fade motor speed to -100% (motor should slow down en slowly reverse direction)
+//   - change motor speed to +100% (motor should accelerate slowly)
+//   - change motor speed to -100% (motor should slow down en slowly reverse direction)
 //   - set motor at 100% speed (sudden change in motor speed to 100%)
 //   - set motor at 100% speed (sudden change in motor speed to -100%)
 
@@ -19,9 +19,9 @@ void setup()
 
 void loop()
 {
-  Moto.fadeSpeed('A',100);
+  Moto.slowChange('A',100);
   delay (2000);
-  Moto.fadeSpeed('A',-100);
+  Moto.slowChange('A',-100);
   delay (2000);
   Moto.setSpeed('A',100);
   delay (2000);

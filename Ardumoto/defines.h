@@ -9,5 +9,5 @@
 #define PWM_PIN_B  11
 
 /// ADJUST BRAKING AND FADING SPEED
-#define FADESPEED 25                              // higher number: slower fading: 1=no fading
-#define BRAKESPEED 3                              // smaller number less abrupt braking (braking reuses FADESPEED)
+#define SLOWCHANGEDELAY 10                        // higher number: slower fading: 1=no fading
+#define BRAKESPEED 3                           // smaller number less abrupt braking (braking reuses FADESPEED)
