@@ -27,6 +27,8 @@
 /// Constructor
 ArduMoto::ArduMoto()
 {
+  _motoSpeedA=0;
+  _motoSpeedB=0;
 }
 
 /// Destructor
