@@ -3,9 +3,6 @@
 # build.sh - Script to build several Arduino .ino files at the same time
 # Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 # 
-# Version History:
-#  Version 0.1: TMP36: getTemperatureRaw, getTemperatureCelcius, getTemperatureFahrenheit
-# 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation; either
@@ -176,7 +173,7 @@ function staticCodeCheck
 
 function staticCodeCheckFile
 {
-  cppcheck $CPPCHECKOPTIONS *.ino > /dev/null
+  cppcheck $CPPCHECKOPTIONS build/*.cpp > /dev/null
   if [ $? -eq 0 ] 
     then
       echo "Cppcheck OK in folder: '`pwd | awk -F/ '{print $NF}'`' "
