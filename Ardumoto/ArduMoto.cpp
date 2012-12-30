@@ -104,51 +104,50 @@ void ArduMoto::setSpeed(char moto, int speed)
 /// slowChange: set the speed to desiredSpeed, adjusting slowly towards the desired value
 void ArduMoto::slowChange(char moto, int desiredSpeed)
 {
-  int difference;
-
   if(moto == 'A')
   {
-    difference = desiredSpeed - _motoSpeedA;
 #ifdef DEBUG_MOTORS
+    int difference;
+    difference = desiredSpeed - _motoSpeedA;
     Serial.print("Difference: ");
     Serial.println(difference);
 #endif
     while( _motoSpeedA != desiredSpeed)
     {
-     if( _motoSpeedA < desiredSpeed )
-     {
-      _motoSpeedA++;
-      setSpeed(moto, _motoSpeedA);
-     }
-    if( _motoSpeedA > desiredSpeed )
-     {
-      _motoSpeedA--;
-      setSpeed(moto, _motoSpeedA);
-     } 
-   delay(SLOWCHANGEDELAY);
-   } 
+      if( _motoSpeedA < desiredSpeed )
+      {
+        _motoSpeedA++;
+        setSpeed(moto, _motoSpeedA);
+      }
+      if( _motoSpeedA > desiredSpeed )
+      {
+        _motoSpeedA--;
+        setSpeed(moto, _motoSpeedA);
+      }
+      delay(SLOWCHANGEDELAY);
+    }
   }
   if(moto == 'B')
   {
-    difference = desiredSpeed - _motoSpeedB;
 #ifdef DEBUG_MOTORS
+    difference = desiredSpeed - _motoSpeedB;
     Serial.print("Difference: ");
     Serial.println(difference);
 #endif
     while( _motoSpeedB != desiredSpeed)
     {
-     if( _motoSpeedB < desiredSpeed )
-     {
-      _motoSpeedB++;
-      setSpeed(moto, _motoSpeedB);
-     }
-    if( _motoSpeedB > desiredSpeed )
-     {
-      _motoSpeedB--;
-      setSpeed(moto, _motoSpeedB);
-     } 
-   delay(SLOWCHANGEDELAY);
-   } 
+      if( _motoSpeedB < desiredSpeed )
+      {
+        _motoSpeedB++;
+        setSpeed(moto, _motoSpeedB);
+      }
+      if( _motoSpeedB > desiredSpeed )
+      {
+        _motoSpeedB--;
+        setSpeed(moto, _motoSpeedB);
+      }
+      delay(SLOWCHANGEDELAY);
+    }
   }
 }
 
