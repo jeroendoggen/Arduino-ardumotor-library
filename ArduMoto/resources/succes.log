@@ -311,3 +311,9 @@ Mon Dec 31 00:34:42 CET 2012: Build OK in folder: 'examples SetSpeed'
 Mon Dec 31 00:34:42 CET 2012: Cppcheck OK in folder: 'build' 
 Mon Dec 31 00:34:42 CET 2012: Cppcheck OK in header file(s)
 Mon Dec 31 00:34:42 CET 2012: Cppcheck OK in cpp file(s)
+Mon Dec 31 00:38:38 CET 2012: Build OK in folder: 'examples SlowChange' 
+Mon Dec 31 00:38:38 CET 2012: Build OK in folder: 'examples Braking' 
+Mon Dec 31 00:38:40 CET 2012: Build OK in folder: 'examples SetSpeed' 
+Mon Dec 31 00:38:40 CET 2012: Cppcheck OK in folder: 'build' 
+Mon Dec 31 00:38:40 CET 2012: Cppcheck OK in header file(s)
+Mon Dec 31 00:38:40 CET 2012: Cppcheck OK in cpp file(s)
