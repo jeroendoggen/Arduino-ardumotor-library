@@ -19,7 +19,7 @@ Library Usage:
 --------------
   * Download the source
   * Place the "ArdoMoto" folder in your Arduino1.0+ "libraries" folder
-  * Open example sketch: "file", "Examples", "Ardumoto", "!SetSpeed" (or "Braking" or "!SlowChange")
+  * Open example sketch: "file", "Examples", "Ardumoto", "SetSpeed" (or "Braking" or "SlowChange")
   * Connect the shield (and connect Vcc and GND on the shield to an extra power supply )
   * Compile & upload code
   * The motor should be running as described in the examples
