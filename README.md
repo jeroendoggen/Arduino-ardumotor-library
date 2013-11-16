@@ -4,7 +4,7 @@ Arduino library for the SparkFun Ardumoto Motor Driver Shield
 
 ## Overview:
 This library simplifies the usage of the SparkFun Ardumoto shield in Arduino projects.
-This is a motor shield for Arduino that controls two DC motors with a L298 H-bridge that can drive up to 2 amps per channel.
+This motor shield controls two DC motors with a L298 H-bridge that can drive up to 2 amps per channel.
 
 More info: https://www.sparkfun.com/products/9815
 
