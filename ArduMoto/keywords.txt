@@ -1,12 +1,12 @@
 ##############################################
-# Syntax Coloring Map For DistanceSensor     #
+# Syntax Coloring Map For Ardumoto Library   #
 ##############################################
 
 ##############################################
 # Datatypes (KEYWORD1)
 ##############################################
 
-ArduMoto  KEYWORD1
+Ardumoto  KEYWORD1
 
 ##############################################
 # Methods and Functions (KEYWORD2)

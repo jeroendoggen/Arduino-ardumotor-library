@@ -1,15 +1,17 @@
-// Braking.ino - Arduino sketch to show a braking example of a DC motor using the ArduMoto Shield
+// Braking.ino - Arduino sketch to show a braking example of a DC motor using the Ardumoto Shield
 // Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // Program flow:
 //   - start motor at 100% speed
-//   - brake motor (motor should stop suddenly)
-//   - set motor speed to -100%
+//   - brake motor
+//   - set motor speed to 100%
 //   - set motor speed to 0% (motor slows down slowly)
+//   - start motor at 100% speed
+//   - brake motor agressively
 
-#include <ArduMoto.h>
+#include <Ardumoto.h>
 
-ArduMoto Moto;
+Ardumoto Moto;
 
 void setup()
 {
@@ -19,15 +21,21 @@ void setup()
 
 void loop()
 {
-  Moto.setSpeed('A',100);
+  Moto.setSpeed('A',100);                         // Start motor A
   delay (2000);
 
-  Moto.brake('A');
+  Moto.brake('A');                                // Brake motor A (slowly...)
   delay (2000);
 
-  Moto.setSpeed('A',-100);
+  Moto.setSpeed('A',100);                         // Start motor A
   delay (2000);
 
-  Moto.setSpeed('A',-0);
+  Moto.setSpeed('A',0);                           // Stop motor A (free running)
+  delay (2000);
+
+  Moto.setSpeed('A',100);                         // Start motor A
+  delay (2000);
+
+  Moto.brakeAgressive('A');                       // Brake motor A (By putting the motor in reverse direction!)
   delay (2000);
 }

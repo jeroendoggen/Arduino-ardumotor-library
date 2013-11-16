@@ -1,4 +1,4 @@
-// ArduMoto.h - Arduino library to control DC motos using the ArduMoto Shield
+// Ardumoto.h - Arduino library to control DC motos using the Ardumoto Shield
 // Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // Version History:
@@ -23,16 +23,16 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-#ifndef ArduMotor_h
-#define ArduMotor_h
+#ifndef Ardumotor_h
+#define Ardumotor_h
 
 #include "defines.h"
 
-class ArduMoto
+class Ardumoto
 {
   public:
-    ArduMoto();                                   // Constructor
-    ~ArduMoto();                                  // Destructor
+    Ardumoto();                                   // Constructor
+    ~Ardumoto();                                  // Destructor
 
     void begin();
     void beginMotoA(int directionPin, int pwmPin);
@@ -43,6 +43,7 @@ class ArduMoto
 
     void stop(char moto);
     void brake(char moto);                        // Brake the motor
+    void brakeAgressive(char moto);               // Brake the motor
 
   private:
     int _motoSpeedA;

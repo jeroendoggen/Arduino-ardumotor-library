@@ -1,4 +1,4 @@
-// ArduMoto.cpp - Arduino library to control DC motors using the ArduMoto Shield
+// Ardumoto.cpp - Arduino library to control DC motors using the Ardumoto Shield
 // Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-#include <ArduMoto.h>
+#include <Ardumoto.h>
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -25,43 +25,43 @@
 #endif
 
 /// Constructor
-ArduMoto::ArduMoto()
+Ardumoto::Ardumoto()
 {
   _motoSpeedA=0;
   _motoSpeedB=0;
 }
 
 /// Destructor
-ArduMoto::~ArduMoto()
+Ardumoto::~Ardumoto()
 {
 //do something here? (free(), delete()?)
 }
 
 /// Begin Function: begin with default values (pin selection)
-void ArduMoto::begin()
+void Ardumoto::begin()
 {
   beginMotoA(DIRECTION_PIN_A, PWM_PIN_A);
   beginMotoB(DIRECTION_PIN_B, PWM_PIN_B);
 }
 
 /// Begin Function for moto A (pin selection)
-void ArduMoto::beginMotoA(int directionPin, int pwmPin)
+void Ardumoto::beginMotoA(int directionPin, int pwmPin)
 {
   pinMode(PWM_PIN_A, OUTPUT);                     //Set control pins to be outputs
   pinMode(DIRECTION_PIN_A, OUTPUT);
   analogWrite(PWM_PIN_A, 0);                      //set moto A to run at (0/255 = 0)% duty cycle (stopped)
 }
 
-/// Begin Function for moto A
-void ArduMoto::beginMotoB(int directionPin, int pwmPin)
+/// Begin Function for moto B
+void Ardumoto::beginMotoB(int directionPin, int pwmPin)
 {
-  pinMode(PWM_PIN_B, OUTPUT);
+  pinMode(PWM_PIN_B, OUTPUT);                     //Set control pins to be outputs
   pinMode(DIRECTION_PIN_B, OUTPUT);
   analogWrite(PWM_PIN_B, 0);                      //set moto B to run at (0/255 = 0)% duty cycle (stopped)
 }
 
 /// setSpeed: from -100 to + 100
-void ArduMoto::setSpeed(char moto, int speed)
+void Ardumoto::setSpeed(char moto, int speed)
 {
   int throttle = map(abs(speed),0,100,0,255);
 
@@ -102,7 +102,7 @@ void ArduMoto::setSpeed(char moto, int speed)
 }
 
 /// slowChange: set the speed to desiredSpeed, adjusting slowly towards the desired value
-void ArduMoto::slowChange(char moto, int desiredSpeed)
+void Ardumoto::slowChange(char moto, int desiredSpeed)
 {
   if(moto == 'A')
   {
@@ -152,7 +152,7 @@ void ArduMoto::slowChange(char moto, int desiredSpeed)
 }
 
 /// stop the motor
-void ArduMoto::stop(char moto)
+void Ardumoto::stop(char moto)
 {
   setSpeed(moto, 0);
 #ifdef DEBUG_MOTORS
@@ -168,7 +168,7 @@ void ArduMoto::stop(char moto)
 }
 
 /// brake: brake the motor, using a temporary negative value (uses slowChange)
-void ArduMoto::brake(char moto)
+void Ardumoto::brakeAgressive(char moto)
 {
   if(moto == 'A')
   {
@@ -186,5 +186,27 @@ void ArduMoto::brake(char moto)
 #endif
     setSpeed(moto, - _motoSpeedB/BRAKESPEED);
     slowChange(moto,0);
+  }
+}
+
+/// brake: really braking the motor electronically is not possible (because of the 74HC1G04 inverter)
+void Ardumoto::brake(char moto)
+{
+  if(moto == 'A')
+  {
+#ifdef DEBUG_MOTORS
+    Serial.print("Braking Motor A");
+    Serial.println(speed);
+#endif
+    setSpeed(moto, 0);
+  }
+
+  if(moto == 'B')
+  {
+#ifdef DEBUG_MOTORS
+    Serial.print("Braking Motor B");
+    Serial.println(speed);
+#endif
+    setSpeed(moto, 0);
   }
 }

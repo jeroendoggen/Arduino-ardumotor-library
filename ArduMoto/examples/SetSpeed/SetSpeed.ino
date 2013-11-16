@@ -1,4 +1,4 @@
-// FadSpeed.ino - Arduino sketch to show a fading example of a DC motor using the ArduMoto Shield
+// FadSpeed.ino - Arduino sketch to show a fading example of a DC motor using the Ardumoto Shield
 // Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // Program flow:
@@ -9,9 +9,9 @@
 //   - set motor speed at 30%
 //   - set motor speed at 0%
 
-#include <ArduMoto.h>
+#include <Ardumoto.h>
 
-ArduMoto Moto;
+Ardumoto Moto;
 
 void setup()
 {
