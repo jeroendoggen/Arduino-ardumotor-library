@@ -1,5 +1,5 @@
 // Braking.ino - Arduino sketch to show a braking example of a DC motor using the Ardumoto Shield
-// Copyright 2012 Jeroen Doggen (jeroendoggen@gmail.com)
+// Copyright 2012-2013 Jeroen Doggen (jeroendoggen@gmail.com)
 //
 // Program flow:
 //   - start motor at 100% speed
