@@ -88,6 +88,7 @@ void Ardumoto::setSpeed(char moto, int speed)
 }
 
 /// slowChange: set the speed to desiredSpeed, adjusting slowly towards the desired value
+/// Warning: this code includes a "delay()" this causes problems when using multiple motors
 void Ardumoto::slowChange(char moto, int desiredSpeed)
 {
   if(moto == 'A')
@@ -154,6 +155,7 @@ void Ardumoto::stop(char moto)
 }
 
 /// brake: brake the motor, using a temporary negative value (uses slowChange)
+/// Warning: this code includes a "delay()" this causes problems when using multiple motors
 void Ardumoto::brakeAgressive(char moto)
 {
   if(moto == 'A')
